@@ -10,6 +10,7 @@ export class ItemPackageBuilder {
     this.config = config;
     this.itemEditor = itemEditor;
     this.itemUpgrades = [];
+    this.isSteam = document.location.host === 'steam.melvoridle.com';
   }
 
   /**
@@ -368,6 +369,14 @@ export class ItemPackageBuilder {
       }
     }
 
+    let newMedia = `${weapon.media}?rarity=${rarity.name}`;
+    if (this.isSteam) {
+      let match = weapon.media.match(/(?:.(?!\/).)+$/);
+      if (match && match[0]) {
+        newMedia = `melvor:/assets/media/bank/${match[0]}#rarity=${rarity.name}`;
+      }
+    }
+
     itemPackage.items.add({
       id: `${weapon.localID}_${rarity.name}_${index}`,
       itemType: 'Weapon',
@@ -376,7 +385,7 @@ export class ItemPackageBuilder {
       category: weapon.category,
       type: weapon.type,
       ammoTypeRequired: AmmoTypeID[weapon.ammoTypeRequired],
-      media: `https://cdn.melvor.net/core/v018/${weapon.media}?rarity=${rarity.name}`,
+      media: newMedia,
       ignoreCompletion: true,
       obtainFromItemLog: weapon.obtainFromItemLog,
       golbinRaidExclusive: weapon.golbinRaidExclusive,
@@ -423,6 +432,14 @@ export class ItemPackageBuilder {
       ...this.itemEditor.generateEquipmentModifiers(rarity, equipmentCategory)
     }
 
+    let newMedia = `${equipment.media}?rarity=${rarity.name}`;
+    if (this.isSteam) {
+      let match = equipment.media.match(/(?:.(?!\/).)+$/);
+      if (match && match[0]) {
+        newMedia = `melvor:/assets/media/bank/${match[0]}#rarity=${rarity.name}`;
+      }
+    }
+
     itemPackage.items.add({
       id: `${equipment.localID}_${rarity.name}_${index}`,
       itemType: 'Equipment',
@@ -430,7 +447,7 @@ export class ItemPackageBuilder {
       // customDescription: equipment._customDescription,
       category: equipment.category,
       type: equipment.itemType,
-      media: `https://cdn.melvor.net/core/v018/${equipment.media}?rarity=${rarity.name}`,
+      media: newMedia,
       ignoreCompletion: true,
       obtainFromItemLog: equipment.obtainFromItemLog,
       golbinRaidExclusive: equipment.golbinRaidExclusive,

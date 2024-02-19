@@ -28,19 +28,19 @@
   box-shadow: 0 0 10px var(--rareColor);
 }
 
-img[src*="rarity=legendary"] {
+img[src*="rarity=legendary"], .bank-item[data-item-id*="legendary"] .bank-img {
   border-radius: 5px;
   position: relative;
   background: linear-gradient(45deg, rgba(10,2,20,0) 0%, rgba(10,2,20,0) 45%, var(--legendaryColor) 92%);
 }
 
-img[src*="rarity=uncommon"] {
+img[src*="rarity=uncommon"], .bank-item[data-item-id*="uncommon"] .bank-img {
   border-radius: 5px;
   position: relative;
   background: linear-gradient(45deg, rgba(10,2,20,0) 0%, rgba(10,2,20,0) 45%, var(--uncommonColor) 92%);
 }
 
-img[src*="rarity=rare"] {
+img[src*="rarity=rare"], .bank-item[data-item-id*="rare"] .bank-img {
   border-radius: 5px;
   position: relative;
   background: linear-gradient(45deg, rgba(10,2,20,0) 0%, rgba(10,2,20,0) 45%, var(--rareColor) 92%);

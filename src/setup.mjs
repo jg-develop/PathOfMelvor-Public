@@ -78,7 +78,9 @@ export async function setup({ characterStorage, patch, loadModule, loadData, onC
 
   onInterfaceReady(ctx => {
     //Make a render call to ensure any loaded items display in the UI
-    game.combat.player.rendersRequired.equipment = true;
-    game.combat.player.render();
+    setTimeout(function() {
+      game.combat.player.rendersRequired.equipment = true;
+      game.combat.player.render();
+    }, 500);
   });
 }
