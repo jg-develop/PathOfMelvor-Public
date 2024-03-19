@@ -441,7 +441,7 @@ export class ItemPackageBuilder {
     }
 
     itemPackage.items.add({
-      id: `${equipment.localID}_${rarity.name}_${index}`,
+      id: `${equipment.localID}_${equipment.namespace}_${rarity.name}_${index}`,
       itemType: 'Equipment',
       name: variant.name,
       // customDescription: equipment._customDescription,
