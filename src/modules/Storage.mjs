@@ -64,6 +64,14 @@ export class Storage {
               return rarity.charAt(0) + number;
             });
 
+            // Convert the slot index of passive items to a single character
+            if (slotIndex === 11) {
+              slotIndex = 'p';
+            }
+            else if (slotIndex === 15) {
+              slotIndex = 'g';
+            }
+
             // We then push a string representing the item onto the data array
             data.push(`0${setIndex}${slotIndex},${compressedSlotItemId},${slotQuantity}`);
           }
@@ -165,7 +173,16 @@ export class Storage {
       if (itemLocation === '0') {
         // The first index is the setIndex and the second one is the slotIndex
         setIndex = Number(indexes[0]);
-        slotIndex = Number(indexes[1]);
+        slotIndex = indexes[1];
+        if (slotIndex === 'p') {
+          slotIndex = 11;
+        }
+        else if (slotIndex === 'g') {
+          slotIndex = 15;
+        }
+        else {
+          slotIndex = Number(indexes[1]);
+        }
 
         // Set the itemType based on the slotIndex
         itemType = this.equipmentSlots[slotIndex];
